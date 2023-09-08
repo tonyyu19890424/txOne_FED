@@ -22,7 +22,7 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 And the test will use jest to run **App.test.js** and **MenuBtn.test.js** two test scrips.
 
-![](./doc/test.jpg)
+![](./doc/jest.jpg)
 
 ### `npm run build`
 
