@@ -1,6 +1,9 @@
-# Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Quick Start
+1. Open [http://localhost:3000](http://localhost:3000) and you will see the first page as below picutre.
+
+![](./doc/firstpage.jpg)
 
 ## Available Scripts
 
@@ -17,7 +20,7 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+And the test will use jest to run **App.test.js** and **MenuBtn.test.js** two test scrips.
 
 ### `npm run build`
 
