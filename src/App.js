@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import MenuBtn from "./MenuBtn";
+import MenuBtn from "./MenuBtn.jsx";
 import { TonicProvider } from "@tonic-ui/react";
 
 function App() {

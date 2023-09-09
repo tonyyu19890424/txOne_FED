@@ -8,6 +8,7 @@ import {
   MenuItem,
   Modal,
   MenuDivider,
+  Menu,
 } from "@tonic-ui/react";
 
 function MenuBtn() {
@@ -20,57 +21,52 @@ function MenuBtn() {
     setMenuOpen(!isMenuOpen);
   };
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  // const calculateModalPosition = () => {
+  //   if (buttonRef.current && isMenuOpen) {
+  //     const buttonRect = buttonRef.current.getBoundingClientRect();
+  //     setModalPosition({
+  //       top: buttonRect.bottom + window.scrollY,
+  //       left: buttonRect.left + window.scrollX,
+  //     });
+  //   }
+  // };
 
-  const calculateModalPosition = () => {
-    if (buttonRef.current && isMenuOpen) {
-      const buttonRect = buttonRef.current.getBoundingClientRect();
-      setModalPosition({
-        top: buttonRect.bottom + window.scrollY,
-        left: buttonRect.left + window.scrollX,
-      });
-    }
-  };
+  // const handleResize = () => {
+  //   cancelAnimationFrame(resizeTimeout);
+  //   resizeTimeout = requestAnimationFrame(() => {
+  //     calculateModalPosition();
+  //     setMenuOpen(false);
+  //   });
+  // };
 
-  const handleResize = () => {
-    cancelAnimationFrame(resizeTimeout);
-    resizeTimeout = requestAnimationFrame(() => {
-      calculateModalPosition();
-      closeMenu();
-    });
-  };
+  // useEffect(() => {
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      calculateModalPosition();
-    }
-  }, [isMenuOpen]);
+  // useEffect(() => {
+  //   calculateModalPosition();
+  // }, [isMenuOpen]);
 
   return (
     <div>
       <Button
         onClick={toggleMenu}
         style={{ marginTop: "5px", color: "white", backgroundColor: "#3d3d3d" }}
-        ref={buttonRef}
+        // ref={buttonRef}
         data-testid="menu-btn"
       >
         <Icon style={{ color: "white", fontSize: "10px" }} icon="user" />
-        <span style={{ marginLeft: "5px" }}>Open Menu</span>
+        <span style={{ marginLeft: "5px" }}>
+          {isMenuOpen === false ? "Open Menu" : "Close Menu"}
+        </span>
       </Button>
       {isMenuOpen && (
         <Modal
           data-testid="modal"
           isOpen={isMenuOpen}
-          onClose={toggleMenu}
           style={{
             position: "absolute",
             // top: `${modalPosition.top}px`,
@@ -81,31 +77,36 @@ function MenuBtn() {
           }}
         >
           <Flex display="inline-flex" flexDirection="column">
-            <MenuItem value="settings">
-              <Icon
-                style={{ color: "white", fontSize: "10px" }}
-                icon="settings"
-              />
-              <Text style={{ color: "white", marginLeft: "10px" }}>
-                Settings
-              </Text>
-            </MenuItem>
-            <MenuItem value="accounts">
-              <Icon
-                style={{ color: "white", fontSize: "10px" }}
-                icon="user-team"
-              />
-              <Text style={{ color: "white", marginLeft: "10px" }}>
-                Accounts
-              </Text>
-            </MenuItem>
-            <MenuItem value="privacy-control">
-              <Icon style={{ color: "white", fontSize: "10px" }} icon="lock" />
-              <Text style={{ color: "white", marginLeft: "10px" }}>
-                Privacy control
-              </Text>
-            </MenuItem>
-            <MenuDivider />
+            <Menu style={{ flexDirection: "column" }}>
+              <MenuItem value="settings">
+                <Icon
+                  style={{ color: "white", fontSize: "10px" }}
+                  icon="settings"
+                />
+                <Text style={{ color: "white", marginLeft: "10px" }}>
+                  Settings
+                </Text>
+              </MenuItem>
+              <MenuItem value="accounts">
+                <Icon
+                  style={{ color: "white", fontSize: "10px" }}
+                  icon="user-team"
+                />
+                <Text style={{ color: "white", marginLeft: "10px" }}>
+                  Accounts
+                </Text>
+              </MenuItem>
+              <MenuItem value="privacy-control">
+                <Icon
+                  style={{ color: "white", fontSize: "10px" }}
+                  icon="lock"
+                />
+                <Text style={{ color: "white", marginLeft: "10px" }}>
+                  Privacy control
+                </Text>
+              </MenuItem>
+              <MenuDivider />
+            </Menu>
           </Flex>
         </Modal>
       )}
